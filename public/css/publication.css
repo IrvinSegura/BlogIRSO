@@ -1,0 +1,140 @@
+.post {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+}
+
+.post-header img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.post-header h3 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.post-header p {
+    margin: 0;
+    font-size: 14px;
+    color: #999;
+}
+
+.post-body {
+    margin: 10px 0;
+}
+
+.post-body p {
+    margin: 0;
+    font-size: 16px;
+}
+
+.post-body img {
+    max-width: 100%;
+    margin-top: 10px;
+}
+
+.post-footer {
+    margin-top: 10px;
+}
+
+.post-footer a {
+    margin-right: 10px;
+    font-size: 14px;
+    color: #999;
+    text-decoration: none;
+}
+
+.post-footer a:hover {
+    color: #333;
+}
+
+.globo {
+    position: relative;
+    display: inline-block;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.globo::before {
+    content: "";
+    position: absolute;
+    border-style: solid;
+    border-width: 10px 10px 0 10px;
+    border-color: #ddd transparent transparent transparent;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.post-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.react-icon,
+.comment-icon {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.react-icon img,
+.comment-icon img {
+    height: 30px;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+.react-count,
+.comment-count {
+    font-size: 14px;
+    font-weight: bold;
+    color: #666;
+    margin-left: 5px;
+}
+
+.reaction-bar {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 50px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    z-index: 9999;
+}
+
+.reaction-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.reaction-icon img {
+    width: 30px;
+    height: 30px;
+    margin-bottom: 5px;
+}
+
+.reaction-name {
+    font-size: 14px;
+    font-weight: bold;
+    color: #666;
+}
