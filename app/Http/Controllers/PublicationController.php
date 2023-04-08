@@ -6,16 +6,18 @@ use Illuminate\Http\Request;
 use App\Models\Publication;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use Illuminate\Support\Carbon;
 
 
 class PublicationController extends Controller
 {
     //
     public function index(){
+        $comment = DB::table('comments')->get();
         $publication = DB::table('publications')->get();
         $category= DB::table('category')->get();
         $user = DB::table('users')->get();
-        return view('Admin/adminPublicaciones', compact('publication', 'category', 'user'));
+        return view('Admin/adminPublicaciones', compact('publication', 'category', 'user', 'comment'));
     }
 
     public function hola1(Request $request){
@@ -46,5 +48,6 @@ class PublicationController extends Controller
         $json = json_decode($json);
         echo "Se ha generado el archivo publications.json".$bytes." bytes en el directorio: ".getcwd();
 
-    }   
+    } 
+    
 }

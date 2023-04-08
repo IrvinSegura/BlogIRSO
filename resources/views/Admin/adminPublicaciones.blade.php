@@ -9,16 +9,17 @@
 
 @section('content')
     @foreach ($publication as $publicacion)
-        <div class="card">
+        <div class="card" style="border: 2px solid orangered;">
             <div class="card-header">
-                <h3 class="card-title">{{ $publicacion->id }}</h3>
-                <h3 class="card-title">{{ $publicacion->title }} </h3>
-                Creado por 
+                <h1 class="card-title">{{ $publicacion->id }}</h1>
+                <h1 class="card-title">{{ $publicacion->title }} </h1>
+                Creado por
                 @foreach ($user as $usuario)
                     @if ($usuario->id == $publicacion->user_id)
                         {{ $usuario->name }}
                     @endif
                 @endforeach
+                Hace: {{ $tiempo = \Carbon\Carbon::parse($publicacion->created_at)->locale('es')->diffForHumans(); }}
                 <div class="globo">
                     <p class="card-text">
                         @foreach ($category as $categoria)
@@ -32,7 +33,8 @@
             <div class="card-body">
                 <p class="card-text">{{ $publicacion->content }}</p>
                 Imagen de la publicacion
-                <img src="{{ asset('storage\img\Hasbulla-Wallpaper-4.img') }}" alt="imagen de la publicacion" widht="100px" height="100px">
+                <img src="{{ asset('storage\img\Hasbulla-Wallpaper-4.img') }}" alt="imagen de la publicacion" widht="100px"
+                    height="100px">
             </div>
             <div class="post">
                 <div class="post-content">
@@ -63,25 +65,24 @@
                         <img src="{{ asset('storage/img/reaction_angry.img') }}" alt="reaccionar">
                         <span class="react-count">0</span>
                     </div> --}}
-                    <form action="{{ 'comentario' }}" method="get" enctype="multipart/form-data">                   
+                    <form action="{{ 'comentario' }}" method="get" enctype="multipart/form-data">
                         @csrf
-                        Publicacion_id: <input type="text" name="publication_id" value="{{ $publicacion->id }}">
+                        <input type="hidden" name="publication_id" value="{{ $publicacion->id }}"><br>
                         Comentar: <input type="text" name="comment">
-                        <button type="submit"  class="btn btn-primary">Comentar</button>
+                        <button type="submit" class="btn btn-primary">Comentar</button>
                     </form>
-                    <div>
+                    <div class="comment">
                         @foreach ($comment as $comentario)
                             @if ($comentario->publication_id == $publicacion->id)
-                                Comet<p>{{ $comentario->comment }}</p>
+                                Cometn<p>{{ $comentario->comment }}</p>
                             @endif
                         @endforeach
                     </div>
                 </div>
             </div>
-
         </div>
+        <br><br>
     @endforeach
-
 @stop
 
 @section('css')
