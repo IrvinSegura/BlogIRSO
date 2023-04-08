@@ -64,3 +64,35 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+<div>
+    <p>#AdminLTE3</p>
+    <p>Es un framework de diseño y desarrollo de interfaz de usuario (UI) de código abierto para aplicaciones web y paneles de administración (dashboards) basado en Bootstrap 4. AdminLTE3 ofrece una amplia gama de componentes preconstruidos, plantillas y herramientas que permiten crear interfaces de usuario modernas y atractivas con facilidad. Además, AdminLTE3 es altamente personalizable, lo que significa que se puede adaptar fácilmente a las necesidades específicas de cada proyecto. Con AdminLTE3, los desarrolladores pueden ahorrar tiempo y recursos en la creación de interfaces de usuario desde cero y concentrarse en el desarrollo de la funcionalidad de su aplicación.</p>
+</div>
+
+<br>
+<div>
+  <p>##Para instalar AdminLTE3 en tu proyecto, sigue los siguientes pasos:</p>
+  <ol>
+    <li>Abre una terminal y navega hasta la carpeta raíz de tu proyecto.</li>
+    <li>Ejecuta el siguiente comando para instalar AdminLTE3 usando NPM:</li>
+  </ol>
+  <pre>
+    <code>npm install admin-lte@^3.0 --save</code>
+  </pre>
+  <p>Este comando instalará AdminLTE3 y todas sus dependencias en tu proyecto.</p>
+  <p>Después de la instalación, importa los archivos CSS y JavaScript de AdminLTE3 en tu proyecto. Puedes hacerlo agregando las siguientes líneas de código en el archivo HTML de tu proyecto:</p>
+  <pre>
+    <code>&lt;!-- CSS de AdminLTE3 --&gt;
+&lt;link rel="stylesheet" href="node_modules/admin-lte/dist/css/adminlte.min.css"&gt;
+<!-- CSS adicional -->
+<link rel="stylesheet" href="path/to/your/additional/styles.css">
+
+<!-- JS de AdminLTE3 -->
+<script src="node_modules/admin-lte/dist/js/adminlte.min.js"></script></code>
+</pre>
+
+  <p>Asegúrate de actualizar la ruta de los archivos CSS y JavaScript en caso de que los hayas ubicado en una carpeta diferente.</p>
+  <p>En caso de que necesites utilizar alguna de las dependencias de AdminLTE3, como jQuery, Popper.js o Bootstrap, deberás agregar los archivos correspondientes en tu proyecto.</p>
+  <p>Con estos pasos, habrás instalado y configurado AdminLTE3 en tu proyecto. Ahora puedes comenzar a utilizar sus componentes y estilos para crear una interfaz de usuario moderna y atractiva para tu aplicación web.</p>
+</div>
