@@ -19,7 +19,7 @@
                         {{ $usuario->name }}
                     @endif
                 @endforeach
-                Hace: {{ $tiempo = \Carbon\Carbon::parse($publicacion->created_at)->locale('es')->diffForHumans(); }}
+                Hace: {{ $tiempo = \Carbon\Carbon::parse($publicacion->created_at)->locale('es')->diffForHumans() }}
                 <div class="globo">
                     <p class="card-text">
                         @foreach ($category as $categoria)
@@ -41,43 +41,45 @@
                     <p>Contenido del post</p>
                 </div>
                 <div class="post-actions">
-                    {{-- <div class="react-icon">
-                        <img src="{{ asset('storage/img/reaction_like.img') }}" alt="reaccionar">
-                        <span class="react-count">0</span>
-                    </div>
-                    <div class="react-icon">
-                        <img src="{{ asset('storage/img/reaction_love.img') }}" alt="reaccionar">
-                        <span class="react-count">0</span>
-                    </div>
-                    <div class="react-icon">
-                        <img src="{{ asset('storage/img/reaction_haha.img') }}" alt="reaccionar">
-                        <span class="react-count">0</span>
-                    </div>
-                    <div class="react-icon">
-                        <img src="{{ asset('storage/img/reaction_wow.img') }}" alt="reaccionar">
-                        <span class="react-count">0</span>
-                    </div>
-                    <div class="react-icon">
-                        <img src="{{ asset('storage/img/reaction_sad.img') }}" alt="reaccionar">
-                        <span class="react-count">0</span>
-                    </div>
-                    <div class="react-icon">
-                        <img src="{{ asset('storage/img/reaction_angry.img') }}" alt="reaccionar">
-                        <span class="react-count">0</span>
-                    </div> --}}
                     <form action="{{ 'comentario' }}" method="get" enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" name="publication_id" value="{{ $publicacion->id }}"><br>
                         Comentar: <input type="text" name="comment">
                         <button type="submit" class="btn btn-primary">Comentar</button>
                     </form>
-                    <div class="comment">
-                        @foreach ($comment as $comentario)
-                            @if ($comentario->publication_id == $publicacion->id)
-                                Cometn<p>{{ $comentario->comment }}</p>
-                            @endif
-                        @endforeach
-                    </div>
+                </div>
+                <br><br>
+                <form>
+                    <input type="button" onclick="mostrar()" class="add-to-cart" value="Ver Comentarios" />
+                </form>
+                <div id="alerta">
+                    @foreach ($comment as $comentario)
+                        @if ($comentario->publication_id == $publicacion->id)
+                            <div class="post-comment">
+                                <div class="post-comment-header">
+                                    <i class="fas fa-user-circle"></i>
+                                    <div class="post-comment-header-text">
+                                        <p class="post-comment-username">
+                                            @foreach ($user as $usuario)
+                                                @if ($usuario->id == $comentario->user_id)
+                                                    {{ $usuario->name }}
+                                                @endif
+                                            @endforeach
+                                        </p>
+                                        <p class="post-comment-time">
+                                            {{ $tiempo = \Carbon\Carbon::parse($comentario->created_at)->locale('es')->diffForHumans(); }}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="post-comment-body">
+                                    <p class="post-comment-text">
+                                        {{ $comentario->comment }}
+                                    </p>
+                                </div>
+                            </div>
+                        @endif
+                    @endforeach
+                    <script src={{ asset('js\publication.js') }}></script>
                 </div>
             </div>
         </div>

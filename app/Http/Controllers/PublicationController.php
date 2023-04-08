@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Publication;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
-use Illuminate\Support\Carbon;
 
 
 class PublicationController extends Controller
@@ -17,7 +15,8 @@ class PublicationController extends Controller
         $publication = DB::table('publications')->get();
         $category= DB::table('category')->get();
         $user = DB::table('users')->get();
-        return view('Admin/adminPublicaciones', compact('publication', 'category', 'user', 'comment'));
+        $user_id = auth()->user()->id;
+        return view('Admin/adminPublicaciones', compact('publication', 'category', 'user', 'comment', 'user_id'));
     }
 
     public function hola1(Request $request){

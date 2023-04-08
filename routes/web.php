@@ -32,3 +32,5 @@ Route::post('hola/formulario', [PublicationController::class, 'hola1'])->name('p
 Route::get('admin/json', [PublicationController::class, 'generarJson'])->name('json');
 
 Route::get('hola/comentario', [CommentController::class, 'crearComentario'])->name('comentario');
+
+Route::get('admin/usuarios', [UsersController::class, 'mostrarUsuarios'])->name('usuarios');

@@ -1,5 +1,6 @@
-@extends('adminlte::page')
+@extends('adminlte::page');
 
+<link rel="stylesheet" href="{{ asset('css/card_user.css') }}">
 @section('title', 'Inicio')
 
 @section('content_header')
@@ -25,7 +26,7 @@
                 </div>
                 <!-- Botón para abrir el modal -->
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-                    Abrir modal
+                    <i class="fas fa-plus">Crear Publicacion</i>
                 </button>
 
                 <!-- Modal -->
@@ -44,7 +45,8 @@
                                     @csrf
 
                                     <div class="mb-3">
-                                        <label for="title" class="form-label">Título</label><input type="text" class="form-control" id="title" name="title" required>
+                                        <label for="title" class="form-label">Título</label><input type="text"
+                                            class="form-control" id="title" name="title" required>
                                     </div>
 
                                     <div class="mb-3">
@@ -71,7 +73,6 @@
                                         <img src="" width="150px" height="120px" id="imagenmuestra">
                                         <script src={{ asset('js/modal.js') }}></script>
                                         <script>
-                                            //al enviar el formulario,descargar automaticamente la imagen en mi pc
                                             $(document).ready(function() {
                                                 $('#src_img').change(function() {
                                                     var file = $('#src_img')[0].files[0];
@@ -85,7 +86,7 @@
                                         </script>
                                     </div>
                                     <input type="submit" class="btn btn-primary" value="Enviar">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
 
                                 </form>
                             </div>

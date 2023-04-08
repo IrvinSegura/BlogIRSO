@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Publication;
 use Illuminate\Support\Facades\DB;
+use App\Models\User;
 
 class UsersController extends Controller
 {
@@ -16,7 +17,14 @@ class UsersController extends Controller
 
     public function hola(){
         $categorias= DB::table('category')->get();
-        return view ('home', compact('categorias'));
+        $activeUsers = DB::table('users')->count();
+        $totalPost = Publication::all()->count();
+        return view ('home', compact('categorias', 'activeUsers', 'totalPost'));
+    }
+
+    public function mostrarUsuarios(){
+        $users= DB::table('users')->get();
+        return view ('Admin/adminUsuarios', compact('users'));
     }
 
     
