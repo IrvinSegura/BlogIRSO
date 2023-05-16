@@ -32,9 +32,8 @@
             </div>
             <div class="card-body">
                 <p class="card-text">{{ $publicacion->content }}</p>
-                Imagen de la publicacion
-                <img src="{{ asset('storage\img\Hasbulla-Wallpaper-4.img') }}" alt="imagen de la publicacion" widht="100px"
-                    height="100px">
+                Imagen de la publicacion    
+
             </div>
             <div class="post">
                 <div class="post-content">

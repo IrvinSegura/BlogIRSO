@@ -34,3 +34,6 @@ Route::get('admin/json', [PublicationController::class, 'generarJson'])->name('j
 Route::get('hola/comentario', [CommentController::class, 'crearComentario'])->name('comentario');
 
 Route::get('admin/usuarios', [UsersController::class, 'mostrarUsuarios'])->name('usuarios');
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

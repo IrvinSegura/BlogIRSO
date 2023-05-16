@@ -11,7 +11,7 @@ class PublicationController extends Controller
 {
     //
     public function index(){
-        $comment = DB::table('comments')->get();
+        $comment= DB::table('comments')->get();
         $publication = DB::table('publications')->get();
         $category= DB::table('category')->get();
         $user = DB::table('users')->get();
@@ -49,4 +49,8 @@ class PublicationController extends Controller
 
     } 
     
+    public function mostrarCategoria(){
+        $categoria= DB::table('category')->get();
+        return view ('/home', compact('category'));
+    }
 }
