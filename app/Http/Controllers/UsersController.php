@@ -27,4 +27,8 @@ class UsersController extends Controller
         $editor = DB::table('role')->where('name', 'editor')->count();
         return view('Admin/adminEstadisticas', compact('admin', 'user', 'editor'));
     }   
+
+    public function perfilAdmin(){
+        return view('Admin/adminPerfil');
+    }
 }

@@ -19,4 +19,5 @@ class CommentController extends Controller
         $comment->save();
         echo "Comentario creado";
     }
+
 }

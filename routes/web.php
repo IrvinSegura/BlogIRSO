@@ -37,3 +37,6 @@ Route::get('admin/usuarios', [UsersController::class, 'mostrarUsuarios'])->name(
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('admin/perfil', [UsersController::class, 'perfilAdmin'])->name('perfil');
+Route::get('admin/perfil', [PublicationController::class, 'publicacionPerfil'])->name('perfil');

@@ -198,14 +198,11 @@
     height: 100%;
 }
 
-#alerta{
+.alerta{
     margin-top:1 0px;
     display: none;
 }
 
-#alerta p{
+.alerta p{
     color: mediumseagreen;
 }
-
-
-

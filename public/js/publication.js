@@ -1,9 +1,8 @@
-window.addEventListener("load", mostrar);
-function mostrar() {
-    var x = document.getElementById('alerta');
-    if (x.style.display === 'none') {
+function mostrar(id) {
+    var x = document.getElementById('alerta'+id);
+    if (x.style.display === '') {
         x.style.display = 'block';
     } else {
-        x.style.display = 'none';
+        x.style.display = '';
     }
 }
