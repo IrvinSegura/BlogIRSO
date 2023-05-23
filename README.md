@@ -1,3 +1,3 @@
-#<b>Aplicacion Web: Blog "JEIRSA"</b>
+<b>Aplicacion Web: Blog "JEIRSA"</b>
 
 #Integrantes:
