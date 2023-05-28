@@ -40,3 +40,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('admin/perfil', [UsersController::class, 'perfilAdmin'])->name('perfil');
 Route::get('admin/perfil', [PublicationController::class, 'publicacionPerfil'])->name('perfil');
+
+Route::get('admin/roles', [UsersController::class, 'mostrarRoles'])->name('roles');

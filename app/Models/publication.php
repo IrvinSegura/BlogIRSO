@@ -21,4 +21,10 @@ class publication extends Model
     public function comments(){
         return $this->hasMany(Comment::class,'publication_id');
     }
+
+    public function getSrcImgUrlAttribute()
+    {
+        return asset('storage/' . $this->src_img);
+    }
+
 }
