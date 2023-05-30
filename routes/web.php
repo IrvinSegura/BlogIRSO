@@ -26,12 +26,12 @@ Auth::routes();
 
 Route::get('/home', [UsersController::class, 'hola'])->name('home');
 
-Route::get('hola/formulario', [PublicationController::class, 'index'])->name('formulario');
-Route::post('hola/formulario', [PublicationController::class, 'hola1'])->name('publication');
+Route::get('publicacion', [PublicationController::class, 'index'])->name('formulario');
+Route::post('publicacion', [PublicationController::class, 'hola1'])->name('publication');
 
 Route::get('admin/json', [PublicationController::class, 'generarJson'])->name('json');
 
-Route::get('hola/comentario', [CommentController::class, 'crearComentario'])->name('comentario');
+Route::get('obtener/comentario', [CommentController::class, 'crearComentario'])->name('comentario');
 
 Route::get('admin/usuarios', [UsersController::class, 'mostrarUsuarios'])->name('usuarios');
 Auth::routes();
@@ -42,3 +42,5 @@ Route::get('admin/perfil', [UsersController::class, 'perfilAdmin'])->name('perfi
 Route::get('admin/perfil', [PublicationController::class, 'publicacionPerfil'])->name('perfil');
 
 Route::get('admin/roles', [UsersController::class, 'mostrarRoles'])->name('roles');
+
+Route::get('admin/estadisticas', [UsersController::class, 'mostrarEstadisticas'])->name('estadisticas');

@@ -46,7 +46,8 @@ class PublicationController extends Controller
         $publication = DB::table('publications')->get();
         $category = DB::table('category')->get();
         $user = DB::table('users')->get();
-
+        
+        echo "Se ha guardado la publicacion";
         return view('home', compact('publication', 'category', 'user'));
     }
 

@@ -17,7 +17,8 @@ class CommentController extends Controller
         $comment->user_id = $user_id;
         $comment->publication_id = $request->publication_id;
         $comment->save();
-        echo "Comentario creado";
+
+        return redirect()->back();
     }
 
 }

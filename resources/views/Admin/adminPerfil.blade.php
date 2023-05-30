@@ -74,19 +74,8 @@
                                         </label>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-primary">Sign in</button>
+                                <button type="submit" class="btn btn-primary">Actualizar Información</button>
                             </form>
-
-                            <div class="mt-4">
-                                <span class="edit-icon" onclick="enableFormFields()">&#9998;</span> Editar Información
-                            </div>
-                        </div>
-                        <script>
-                            function enableFormFields() {
-                                $('input, textarea').prop('disabled', false);
-                                $('button[type="submit"]').prop('disabled', false);
-                            }
-                        </script>
                     </div>
                 </div>
                 <script>

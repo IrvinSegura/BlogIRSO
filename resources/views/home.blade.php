@@ -41,7 +41,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form action="{{ 'hola/formulario' }}" method="POST" enctype="multipart/form-data">
+                                <form action="{{ 'publicacion' }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <div class="mb-3">
                                         <label for="title" class="form-label">Título</label><input type="text"
@@ -49,12 +49,13 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="categoria" class="form-label">Categoría</label>
-                                        <select class="form-select" aria-label="Default select example" id="category_id" name="category_id" required>
+                                        <select class="form-select" aria-label="Default select example" id="category_id"
+                                            name="category_id" required>
                                             <option selected>Seleccione una categoría</option>
-                                                {{ $category = DB::table('category')->get() }}
-                                                @foreach ($category as $item)
-                                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
-                                                @endforeach
+                                            {{ $category = DB::table('category')->get() }}
+                                            @foreach ($category as $item)
+                                                <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                     <div class="mb-3">
@@ -92,6 +93,8 @@
                 </div>
 
             </div>
+
+
         </div>
 
     @stop

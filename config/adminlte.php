@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'Blog IRSO',
+    'title' => 'Blog JEIRSA',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -63,12 +63,12 @@ return [
     |
     */
 
-    'logo' => '<b>BLOG</b> IRSO',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+    'logo' => '<b>BLOG</b> JEIRSA',
+    'logo_img' => 'vendor/adminlte/dist/img/JEIRSA.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
-    'logo_img_alt' => 'AdminLTE',
+    'logo_img_alt' => 'JEIRSA',
 
     /*
     |--------------------------------------------------------------------------
@@ -86,7 +86,7 @@ return [
     'auth_logo' => [
         'enabled' => false,
         'img' => [
-            'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+            'path' => 'vendor/adminlte/dist/img/JEIRSA.png',
             'alt' => 'Auth Logo',
             'class' => '',
             'width' => 50,
@@ -107,9 +107,9 @@ return [
     */
 
     'preloader' => [
-        'enabled' => true,
+        'enabled' => false,
         'img' => [
-            'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+            'path' => 'vendor/adminlte/dist/img/JEIRSA.png',
             'alt' => 'AdminLTE Preloader Image',
             'effect' => 'animation__shake',
             'width' => 60,
@@ -304,23 +304,18 @@ return [
         // Sidebar items:
         [
             'type' => 'sidebar-menu-search',
-            'text' => 'search',
+            'text' => 'Ingresa una palabra....',
         ],
         [
             'text' => 'blog',
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
         ],
-        ['header' => 'Configuracion'],
+        ['header' => 'Configuración'],
         [
             'text' => 'Perfil',
             'url'  => 'admin/perfil',
             'icon' => 'fas fa-fw fa-user',
-        ],
-        [
-            'text' => 'Cambiar Contraseña',
-            'url'  => 'admin/password',
-            'icon' => 'fas fa-fw fa-lock',
         ],
         [
             'text' => 'Estadisticas',
@@ -340,7 +335,7 @@ return [
         ],
         [
             'text' => 'Publicaciones',
-            'url'  => 'hola/formulario',
+            'url'  => 'publicacion',
             'icon' => 'fas fa-fw fa-newspaper',
         ],
         [
