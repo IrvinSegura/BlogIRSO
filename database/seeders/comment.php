@@ -16,7 +16,7 @@ class comment extends Seeder
         //
         date_default_timezone_set('America/Mexico_City');
         DB::table('comments')->insert([
-            'publication_id' => 2,
+            'publication_id' => 227,
             'user_id' => 4,
             'comment' => 'Buena noticia',
             'created_at' => now(),

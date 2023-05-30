@@ -21,11 +21,11 @@ class UsersController extends Controller
         return view ('Admin/adminUsuarios', compact('users'));
     }
 
-    public function estadisticas(){
-        $admin = DB::table('role')->where('name', 'admin')->count();
-        $user = DB::table('role')->where('name', 'user')->count();
-        $editor = DB::table('role')->where('name', 'editor')->count();
-        return view('Admin/adminEstadisticas', compact('admin', 'user', 'editor'));
+    public function mostrarEstadisticas(){
+        $cantidad_Admin= DB::table('users')->where('rol', 1)->count();
+        $cantidad_Editor= DB::table('users')->where('rol', 2)->count();
+        $cantidad_User= DB::table('users')->where('rol', 3)->count();
+        return view('Admin/adminEstadisticas', compact('cantidad_Admin', 'cantidad_Editor', 'cantidad_User'));
     }   
 
     public function perfilAdmin(){

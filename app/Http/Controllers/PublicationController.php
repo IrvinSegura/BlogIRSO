@@ -23,26 +23,32 @@ class PublicationController extends Controller
     {
         $user_id = auth()->user()->id;
         $slug = str_replace(' ', '-', $request->title);
+        $slug_u = strtolower($slug);    
 
         $publication = new Publication();
         $publication->title = $request->title;
         $publication->category_id = $request->category_id;
         $publication->content = $request->content;
-        $publication->src_img = $request->src_img;
+        $publication->title = $request->title;
+        $publication->category_id = $request->category_id;
+        $publication->content = $request->content;
+        
+        $originalName = $request->file('src_img')->getClientOriginalName();
+        
+        $request->file('src_img')->storeAs('public', $originalName);
+        
+        $publication->src_img = $originalName;
+        
         $publication->user_id = $user_id;
         $publication->status = 'publicado';
-        $publication->slug = $slug;
-        $image = $request->file('src_img');
-        $originalName = $image->getClientOriginalName();
-        $image->storeAs('public', $originalName);
-        $url = asset('storage/' . $originalName);
-
+        $publication->slug = $slug_u;
         $publication->save();
         $publication = DB::table('publications')->get();
         $category = DB::table('category')->get();
         $user = DB::table('users')->get();
-
-        return view('Admin/adminPublicaciones', compact('publication', 'category', 'user'));
+        
+        echo "Se ha guardado la publicacion";
+        return view('home', compact('publication', 'category', 'user'));
     }
 
     public function generarJson()
