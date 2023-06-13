@@ -73,7 +73,7 @@
                                     <input type="text" name="comment" width="1000px">
                                     <button type="submit" class="btn btn-primary">Comentar</button>
                                 </form>
-                            </div>php php 
+                            </div>php php
                             <br><br>
                             <form>
                                 <input type="button" onclick="mostrar('{{ $publicacion->id }}')" class="add-to-cart"
@@ -81,7 +81,7 @@
                             </form>
                             <div class="alerta" id="alerta{{ $publicacion->id }}">
                                 @foreach ($publicacion->comments as $comentario)
-                                    <div class="post-comment" >
+                                    <div class="post-comment">
                                         <div class="post-comment" style="border: 2px solid blue;">
                                             <div class="post-comment-avatar">
                                                 <i class="fas fa-user-circle"></i>
@@ -113,8 +113,8 @@
                     </div>
                 </article>
             </div>
-            </center>
-                <br><br>
+        </center>
+        <br><br>
     @endforeach
 @stop
 

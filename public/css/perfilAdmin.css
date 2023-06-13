@@ -203,6 +203,7 @@ body {
 
 .profile__stats {
     display: flex;
+    height: 45vh;
 }
 
 .profile__username {

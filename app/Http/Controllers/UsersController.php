@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Publication;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class UsersController extends Controller
 {
@@ -28,7 +29,12 @@ class UsersController extends Controller
         return view('Admin/adminEstadisticas', compact('cantidad_Admin', 'cantidad_Editor', 'cantidad_User'));
     }   
 
-    public function perfilAdmin(){
-        return view('Admin/adminPerfil');
+    public function usuarioPerfil(){
+        try{
+            $user= Auth::user();
+            return view('User/userPerfil', compact('user'));
+        }catch(\Exception $ex){
+            return redirect()->route('home')->with('error', $ex->getMessage());
+        }
     }
 }

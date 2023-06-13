@@ -44,3 +44,7 @@ Route::get('admin/perfil', [PublicationController::class, 'publicacionPerfil'])-
 Route::get('admin/roles', [UsersController::class, 'mostrarRoles'])->name('roles');
 
 Route::get('admin/estadisticas', [UsersController::class, 'mostrarEstadisticas'])->name('estadisticas');
+
+Route::get('index', function(){
+    return view('tables');
+});
