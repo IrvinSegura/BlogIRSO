@@ -4,3 +4,4 @@
 <p> #Irvin Segura Ortiz </p>
 <p> #Saul Ivan Garcia </p>
 <p> #Jesus Ian García Flores </p>
+<p> #Soe Y. Gimenez </p>
