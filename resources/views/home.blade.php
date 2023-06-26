@@ -1,4 +1,4 @@
-@extends('adminlte::page');
+@extends('adminlte::page')
 
 <link rel="stylesheet" href="{{ asset('css/card_user.css') }}">
 @section('title', 'Inicio')

@@ -73,7 +73,7 @@
                                     <input type="text" name="comment" width="1000px">
                                     <button type="submit" class="btn btn-primary">Comentar</button>
                                 </form>
-                            </div>php php
+                            </div>
                             <br><br>
                             <form>
                                 <input type="button" onclick="mostrar('{{ $publicacion->id }}')" class="add-to-cart"

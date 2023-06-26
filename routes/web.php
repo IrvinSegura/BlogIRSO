@@ -48,3 +48,5 @@ Route::get('admin/estadisticas', [UsersController::class, 'mostrarEstadisticas']
 Route::get('index', function(){
     return view('tables');
 });
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
