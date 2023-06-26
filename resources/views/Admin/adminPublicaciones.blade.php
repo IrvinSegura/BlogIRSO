@@ -1,4 +1,5 @@
-@extends('adminlte::page')
+
+ @extends('adminlte::page')
 <link rel="stylesheet" href="{{ asset('css/publication.css') }}">
 @section('title', 'Publicaciones')
 
@@ -127,3 +128,5 @@
         console.log('Hi!');
     </script>
 @stop
+
+ 
