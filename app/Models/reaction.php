@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class reaction extends Model
 {
+    protected $table = 'reaction';
     use HasFactory;
     protected $fillable = [
         'user_id',

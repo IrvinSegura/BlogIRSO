@@ -7,10 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class role extends Model
 {
+    protected $table = 'role';
     use HasFactory;
     protected $fillable = [
         'name',
     ];
 
+    public function getRoleName($id)
+    {
+        $role = role::find($id);
+        return $role->name;
+    }
     
 }

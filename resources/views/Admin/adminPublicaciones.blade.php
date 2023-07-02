@@ -1,5 +1,4 @@
-
- @extends('adminlte::page')
+@extends('adminlte::page')
 <link rel="stylesheet" href="{{ asset('css/publication.css') }}">
 @section('title', 'Publicaciones')
 
@@ -13,9 +12,6 @@
         <center>
             <div class="container">
                 <article class="item-pane" style="border: 2px solid green;">
-                    <div class="item-preview">
-                        <div class="book"></div>
-                    </div>
                     <div class="item-details">
                         <div style="background-color: orange;">
                             <h1>{{ $publicacion->title }}</h1>
@@ -33,7 +29,7 @@
                             </span></div>
                         <div class="pane__section" style="display: flex; align-items: center;">
                             <div class="imagen" style="margin-right: 
-                            15px; margin-left: 0;">
+                    15px; margin-left: 0;">
                                 <img src="{{ $publicacion->src_img_url }}" alt="" width="400px" />
                                 {{-- {{ $publicacion->src_img_url }} --}}
                             </div>
@@ -128,5 +124,3 @@
         console.log('Hi!');
     </script>
 @stop
-
- 

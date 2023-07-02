@@ -7,9 +7,9 @@
     <script>
         $(document).ready(function() {
             swal(
-                'Error',
-                'Datos enviados incorrectamente',
-                'error'
+                '!Exito!',
+                'Accion realizada correctamente',
+                'success'
             );
         });
     </script>

@@ -8,6 +8,7 @@ use App\Models\Comment;
 
 class publication extends Model
 {
+    protected $table = 'publications';
     use HasFactory;
     protected $fillable = [
         'title',

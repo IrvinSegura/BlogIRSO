@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use Illuminate\Contracts\View\View;
-use Illuminate\Support\Facades\DB;
+use App\Models\Role;
+use Illuminate\Http\Request;
 
 
 class RoleController extends Controller
 {
-    //
-    // public function index(): View
-    // {
-    //     $users = DB::table('users')->get();
-    //     return view('Admin/adminRoles', ['users' => $users]);
-    // }
+    public function nuevoRol()
+    {
+        $role= new Role;
+        $role->name= request()->rolNew;
+        $role->save();
+
+        return redirect()->back();
+    }
 }

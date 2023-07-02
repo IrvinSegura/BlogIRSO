@@ -8,7 +8,7 @@
         $(document).ready(function() {
             swal(
                 'Error',
-                'Datos enviados incorrectamente',
+                'No se pudo realizar la operación',
                 'error'
             );
         });

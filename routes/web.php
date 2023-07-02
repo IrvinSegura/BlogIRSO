@@ -5,7 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\CommentController;
-
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\RoleController;
 
 
 
@@ -29,6 +30,10 @@ Route::middleware([
     Route::get('obtener/comentario', [CommentController::class, 'crearComentario'])->name('comentario');
 
     Route::get('admin/usuarios', [UsersController::class, 'mostrarUsuarios'])->name('usuarios');
+    Route::post('admin/usuarios', [UsersController::class, 'agregarUsuario'])->name('editarUsuario');
+    Route::get('admin/usuarios/editar', [UsersController::class, 'editarUsuario'])->name('agregarUsuario');
+    Route::get('admin/usuarios/eliminar', [UsersController::class, 'eliminarUsuario'])->name('eliminarUsuario');
+    Route::get('/usuarios-eliminados', [UsersController::class, 'usuariosEliminados'])->name('usuarios.eliminados');
 
 
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -36,10 +41,17 @@ Route::middleware([
     Route::get('admin/perfil', [UsersController::class, 'perfilAdmin'])->name('perfil');
     Route::get('admin/perfil', [PublicationController::class, 'publicacionPerfil'])->name('perfil');
 
-    Route::get('admin/roles', [UsersController::class, 'mostrarRoles'])->name('roles');
+
 
     Route::get('admin/estadisticas', [UsersController::class, 'mostrarEstadisticas'])->name('estadisticas');
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+    Route::get('admin/categorias', [CategoryController::class, 'verCategoria'])->name('categorias');
+    Route::post('admin/categorias', [CategoryController::class, 'sendCategory'])->name('categoria');
+    Route::post('admin/categorias/nuevoNombre', [CategoryController::class, 'nuevoNombre'])->name('nuevoNombre');
+    Route::get('admin/categorias/eliminar', [CategoryController::class, 'view'])->name('eliminar');
+    Route::post('admin/categorias/eliminar', [CategoryController::class, 'eliminar'])->name('eliminar');
+    Route::get('/editor', function () {
+        return view('Editor.editor');
+    });
 
 });
