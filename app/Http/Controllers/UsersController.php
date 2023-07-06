@@ -43,7 +43,7 @@ class UsersController extends Controller
             $user = Auth::user();
             return view('User/userPerfil', compact('user'));
         } catch (\Exception $ex) {
-            return redirect()->route('home')->with('error', $ex->getMessage());
+            return redirect()->route('home')->with('failed', $ex->getMessage());
         }
     }
 
@@ -60,7 +60,7 @@ class UsersController extends Controller
             Session::flash('success', 'Datos enviados correctamente');
             return redirect()->back();
         } catch (\Exception $ex) {
-            return redirect()->route('usuarios')->with('error', $ex->getMessage());
+            return redirect()->route('usuarios')->with('failed', $ex->getMessage());
         }
     }
 
@@ -74,12 +74,12 @@ class UsersController extends Controller
                 $user->delete();
                 Session::flash('success', 'Usuario eliminado correctamente');
             } else {
-                Session::flash('error', 'No se encontró el usuario');
+                Session::flash('failed', 'No se encontró el usuario');
             }
 
             return redirect()->back();
         } catch (\Exception $ex) {
-            Session::flash('error', $ex->getMessage());
+            Session::flash('failed', $ex->getMessage());
         }
     }
 
@@ -97,7 +97,7 @@ class UsersController extends Controller
             Session::flash('success', 'Usuario agregado correctamente');
             return redirect()->back();
         } catch (\Exception $ex) {
-            return redirect()->route('usuarios')->with('error', $ex->getMessage());
+            return redirect()->route('usuarios')->with('failed', $ex->getMessage());
         }
     }
 
@@ -108,6 +108,31 @@ class UsersController extends Controller
             "<td>" . $user->name . "</td>";
             "<td>" . $user->email . "</td>";
             "<td>" . $user->rol . "</td>";
+        }
+    }
+
+    public function usuariosOcultos(){
+        $users = User::onlyTrashed()->get();
+        $role = DB::table('role')->get();
+        return view('Admin/adminUsuariosOcultos', compact('users', 'role'));
+    }
+
+    public function restaurarUsuario()
+    {
+        $request = request();
+        try {
+            $user = User::onlyTrashed()->find($request->id);
+
+            if ($user) {
+                $user->restore();
+                Session::flash('success', 'Usuario restaurado correctamente');
+            } else {
+                Session::flash('failed', 'No se encontró el usuario');
+            }
+
+            return redirect()->back();
+        } catch (\Exception $ex) {
+            Session::flash('failed', $ex->getMessage());
         }
     }
 }

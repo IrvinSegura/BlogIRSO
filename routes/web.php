@@ -33,9 +33,9 @@ Route::middleware([
     Route::post('admin/usuarios', [UsersController::class, 'agregarUsuario'])->name('editarUsuario');
     Route::get('admin/usuarios/editar', [UsersController::class, 'editarUsuario'])->name('agregarUsuario');
     Route::get('admin/usuarios/eliminar', [UsersController::class, 'eliminarUsuario'])->name('eliminarUsuario');
-    Route::get('/usuarios-eliminados', [UsersController::class, 'usuariosEliminados'])->name('usuarios.eliminados');
-
-
+    Route::get('admin/usuarios/ocultos', [UsersController::class, 'usuariosOcultos'])->name('usuarios.ocultos');
+    Route::post('admin/usuarios/restaurar', [UsersController::class, 'restaurarUsuario'])->name('usuarios.restaurar');
+    
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
     Route::get('admin/perfil', [UsersController::class, 'perfilAdmin'])->name('perfil');
@@ -47,11 +47,6 @@ Route::middleware([
 
     Route::get('admin/categorias', [CategoryController::class, 'verCategoria'])->name('categorias');
     Route::post('admin/categorias', [CategoryController::class, 'sendCategory'])->name('categoria');
-    Route::post('admin/categorias/nuevoNombre', [CategoryController::class, 'nuevoNombre'])->name('nuevoNombre');
-    Route::get('admin/categorias/eliminar', [CategoryController::class, 'view'])->name('eliminar');
-    Route::post('admin/categorias/eliminar', [CategoryController::class, 'eliminar'])->name('eliminar');
-    Route::get('/editor', function () {
-        return view('Editor.editor');
-    });
-
+    Route::get('admin/categorias/nuevoNombre', [CategoryController::class, 'nuevoNombre'])->name('nuevoNombre');
+    Route::get('admin/categorias/eliminar', [CategoryController::class, 'eliminar'])->name('eliminar');
 });

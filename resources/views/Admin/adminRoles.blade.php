@@ -8,6 +8,12 @@
 @stop
 
 @section('content')
+    @if (Session::has('success'))
+        <x-success-popup />
+    @endif
+    @if (Session::has('failed'))
+        <x-failed-popup />
+    @endif
     <div class="container">
         <div class="row justify-content-center">
             <div class="card-body">
@@ -32,18 +38,18 @@
                     <tbody id="table-body" class="table-body">
                         @foreach ($users as $user)
                             <tr>
-                                <td>{{$user->id}}</td>
-                                <td>{{$user->name}}</td>
-                                <td>{{$user->email}}</td>
-                                <td>{{$user->rol}}</td>
-                                <td>{{$user->created_at}}</td>
+                                <td>{{ $user->id }}</td>
+                                <td>{{ $user->name }}</td>
+                                <td>{{ $user->email }}</td>
+                                <td>{{ $user->rol }}</td>
+                                <td>{{ $user->created_at }}</td>
                                 <td>
-                                <a href="" class="btn btn-primary">Editar</a>
-                                <form action="" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger">Eliminar</button>
-                                </form>
+                                    <a href="" class="btn btn-primary">Editar</a>
+                                    <form action="" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach

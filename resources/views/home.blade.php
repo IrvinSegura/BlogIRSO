@@ -8,7 +8,12 @@
 @stop
 
 @section('content')
-
+    @if (Session::has('success'))
+        <x-success-popup />
+    @endif
+    @if (Session::has('failed'))
+        <x-failed-popup />
+    @endif
     <head>
         <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
         <link href='{{ asset('css/calendar.css') }}' rel='stylesheet' type='text/css'>

@@ -16,7 +16,7 @@
     @endif
     <!-- Botón para abrir el modal -->
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-       <i class="fas fa-plus">Nuevo Usuario</i>
+        <i class="fas fa-plus">Nuevo Usuario</i>
     </button>
 
     <!-- Modal -->
@@ -31,7 +31,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{('usuarios')}}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ 'usuarios' }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="mb-3">
                             Nombre: <input type="text" name="name" class="form-control" id="name"><br>
@@ -44,7 +44,8 @@
                             </select>
                         </div>
                         <input type="submit" class="btn btn-primary" value="Enviar">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-times">Cerrar</i></button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal"><i
+                                class="fas fa-times">Cerrar</i></button>
 
                     </form>
                 </div>
@@ -75,82 +76,92 @@
                     </thead>
                     <tbody id="table-body" class="table-body">
                         @foreach ($users as $user)
-                            <tr>
-                                <td>{{ $user->id }}</td>
-                                <td>{{ $user->name }}</td>
-                                <td>{{ $user->email }}</td>
-                                <td>
-                                    @foreach ($role as $rol)
-                                        @if ($user->rol == $rol->id)
-                                            {{ $rol->name }}
-                                        @endif
-                                    @endforeach
-                                </td>
-                                <td>{{ $user->created_at }}</td>
-                                <td>
-                                    <!-- Botón para abrir el modal -->
-                                    <button type="button" class="btn btn-primary" data-toggle="modal"
-                                        data-target="#myModal{{ $user->id }}">
-                                        <i class="fas fa-edit">Editar</i>
-                                    </button>
+                            @if ($user->deleted_at == null)
+                                <tr>
+                                    <td>{{ $user->id }}</td>
+                                    <td>{{ $user->name }}</td>
+                                    <td>{{ $user->email }}</td>
+                                    <td>
+                                        @foreach ($role as $rol)
+                                            @if ($user->rol == $rol->id)
+                                                {{ $rol->name }}
+                                            @endif
+                                        @endforeach
+                                    </td>
+                                    <td>{{ $user->created_at }}</td>
+                                    <td>
+                                        <!-- Botón para abrir el modal -->
+                                        <button type="button" class="btn btn-primary" data-toggle="modal"
+                                            data-target="#myModal{{ $user->id }}">
+                                            <i class="fas fa-edit">Editar</i>
+                                        </button>
 
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="myModal{{ $user->id }}" tabindex="-1" role="dialog"
-                                        aria-labelledby="exampleModalLabel{{ $user->id }}" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel{{ $user->id }}">
-                                                        Editar Usuario</h5>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                        aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <form action="{{ 'usuarios/editar' }}" method="GET"
-                                                        enctype="multipart/form-data">
-                                                        @csrf
-                                                        <div class="mb-3">
-                                                            <input type="hidden" name="id" class="form-control"
-                                                                id="id" value="{{ $user->id }}">
-                                                            Nombre: <input type="text" name="name"
-                                                                class="form-control" id="name"
-                                                                value="{{ $user->name }}"><br>
-                                                            Email: <input type="text" name="email"
-                                                                class="form-control" id="email"
-                                                                value="{{ $user->email }}"><br>
-                                                            Nuevo Rol: <select name="rol" class="form-control"
-                                                                id="rol">
-                                                                @foreach ($role as $rol)
-                                                                    <option value="{{ $rol->id }}">
-                                                                        {{ $rol->name }}</option>
-                                                                @endforeach
-                                                            </select>
-                                                        </div>
-                                                        <center><input type="submit" class="btn btn-primary"
-                                                                value="Enviar">
-                                                            <button type="button" class="btn btn-secondary"
-                                                                data-dismiss="modal">Cerrar</button>
-                                                        </center>
-                                                    </form>
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="myModal{{ $user->id }}" tabindex="-1"
+                                            role="dialog" aria-labelledby="exampleModalLabel{{ $user->id }}"
+                                            aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel{{ $user->id }}">
+                                                            Editar Usuario</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form action="{{ 'usuarios/editar' }}" method="GET"
+                                                            enctype="multipart/form-data">
+                                                            @csrf
+                                                            <div class="mb-3">
+                                                                <input type="hidden" name="id" class="form-control"
+                                                                    id="id" value="{{ $user->id }}">
+                                                                Nombre: <input type="text" name="name"
+                                                                    class="form-control" id="name"
+                                                                    value="{{ $user->name }}"><br>
+                                                                Email: <input type="text" name="email"
+                                                                    class="form-control" id="email"
+                                                                    value="{{ $user->email }}"><br>
+                                                                Nuevo Rol: <select name="rol" class="form-control"
+                                                                    id="rol">
+                                                                    @foreach ($role as $rol)
+                                                                        <option value="{{ $rol->id }}">
+                                                                            {{ $rol->name }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+                                                            <center><input type="submit" class="btn btn-primary"
+                                                                    value="Enviar">
+                                                                <button type="button" class="btn btn-secondary"
+                                                                    data-dismiss="modal">Cerrar</button>
+                                                            </center>
+                                                        </form>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div>
-                                        <form action="{{('usuarios/eliminar')}}" method="GET" enctype="multipart/form-data"> 
-                                            @csrf
-                                            <input type="hidden" name="id" class="form-control" id="idUserDelete" value="{{ $user->id }}">
-                                            <input type="hidden" name="name" class="form-control" id="nameUserDelete" value="{{ $user->name }}">
-                                            <input type="hidden" name="email" class="form-control" id="emailUserDelete" value="{{ $user->email }}">
-                                            <input type="hidden" name="rol" class="form-control" id="rolUserDelete" value="{{ $user->rol }}">
-                                            <input type="hidden" name="password" class="form-control" id="passwordUserDelete" value="{{ $user->password }}">
-                                            <button type="submit" class="btn btn-danger" ><i class="fas fa-trash">Eliminar</i></button>
-                                        </form>
-                                    </div>
-                                </td>
-                            </tr>
+                                        <div>
+                                            <form action="{{ 'usuarios/eliminar' }}" method="GET"
+                                                enctype="multipart/form-data">
+                                                @csrf
+                                                <input type="hidden" name="id" class="form-control"
+                                                    id="idUserDelete" value="{{ $user->id }}">
+                                                <input type="hidden" name="name" class="form-control"
+                                                    id="nameUserDelete" value="{{ $user->name }}">
+                                                <input type="hidden" name="email" class="form-control"
+                                                    id="emailUserDelete" value="{{ $user->email }}">
+                                                <input type="hidden" name="rol" class="form-control"
+                                                    id="rolUserDelete" value="{{ $user->rol }}">
+                                                <input type="hidden" name="password" class="form-control"
+                                                    id="passwordUserDelete" value="{{ $user->password }}">
+                                                <button type="submit" class="btn btn-danger"><i
+                                                        class="fas fa-trash">Eliminar</i></button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endif
                         @endforeach
                     </tbody>
                 </table>

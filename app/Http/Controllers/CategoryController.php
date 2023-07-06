@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Log;
+
 
 class CategoryController extends Controller
 {
@@ -23,30 +26,40 @@ class CategoryController extends Controller
 
     public function sendCategory(Request $request)
     {
-        $category = new Category();
-        $category->name = $request->name;
-        $category->save();
-
+        try {
+            $category = new Category();
+            $category->name = $request->name;
+            $category->save();
+            Session::flash('success', 'Datos enviados correctamente');
+        } catch (\Exception $ex) {
+            Session::flash('failed', $ex->getMessage());
+        }
         return redirect()->back();
     }
 
-    public function nuevoNombre()
+    public function nuevoNombre(Request $request)
     {
-        $category = DB::table('category')->get();
-        $request = request();
-        $category = DB::table('category')
-            ->select('name')
-            ->where('id', $request->id)
-            ->update(['name' => $request->nameNew]);
+        try {
+            $category = Category::find($request->id);
+            $category->name = $request->nameNew; // Se corrige el nombre del campo
+            $category->save();
 
+            Session::flash('success', 'Datos enviados correctamente');
+        } catch (\Exception $ex) {
+            Session::flash('failed', $ex->getMessage());
+        }
         return redirect()->back();
     }
 
     public function eliminar(Request $request)
     {
-        $categoryId = $request->id;
-        DB::table('category')->where('id', $categoryId)->delete();
-
+        try {
+            $category = Category::find($request->id);
+            $category->delete();
+            Session::flash('success', 'Datos enviados correctamente');
+        } catch (\Exception $ex) {
+            Session::flash('failed', $ex->getMessage());
+        }
         return redirect()->back();
     }
 

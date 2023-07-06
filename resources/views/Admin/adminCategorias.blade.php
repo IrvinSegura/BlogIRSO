@@ -1,4 +1,5 @@
 @extends('adminlte::page')
+<link rel="stylesheet" href="{{ asset('css/home.css') }}">
 
 @section('title', 'Inicio')
 
@@ -7,14 +8,21 @@
 @stop
 
 @section('content')
-
+    @if (Session::has('success'))
+        <x-success-popup />
+    @endif
+    @if (Session::has('failed'))
+        <x-failed-popup />
+    @endif
+    <br><br>
     <!-- Botón para abrir el modal -->
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
         <i class="fas fa-add">Nueva Categoria</i>
     </button>
 
     <!-- Modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -55,7 +63,7 @@
                         <td>{{ $categoria->name }}</td>
                         <td>
                             <a href="" class="btn btn-primary" data-toggle="modal"
-                                data-target="#myModal{{ $categoria->id }}">Editar</a>
+                                data-target="#myModal{{ $categoria->id }}"><i class="fas fa-edit">Editar</i></a>
 
                             <div class="modal fade" id="myModal{{ $categoria->id }}" tabindex="-1" role="dialog"
                                 aria-labelledby="exampleModalLabel{{ $categoria->id }}" aria-hidden="true">
@@ -71,7 +79,7 @@
                                         <div class="modal-body">
                                             Nombre Actual:
                                             <label for="nombre" class="form-label">{{ $categoria->name }}</label>
-                                            <form action="{{ 'categorias/nuevoNombre' }}" method="POST"
+                                            <form action="{{ 'categorias/nuevoNombre' }}" method="GET"
                                                 enctype="multipart/form-data">
                                                 @csrf
                                                 <div class="mb-3">
@@ -90,40 +98,15 @@
                                 </div>
                             </div>
                             <div>
-                                <button type="button" class="btn btn-danger" data-toggle="modal"
-                                    data-target="#confirmDeleteModal{{ $categoria->id }}">Borrar</button>
-
-                                <div class="modal fade" id="confirmDeleteModal{{ $categoria->id }}" tabindex="-1"
-                                    role="dialog" aria-labelledby="confirmDeleteModalLabel{{ $categoria->id }}"
-                                    aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="confirmDeleteModalLabel{{ $categoria->id }}">
-                                                    Confirmar Accion</h5>
-                                                <button type="button" class="close" data-dismiss="modal"
-                                                    aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                ¿Estás seguro de que deseas borrar la categoría "{{ $categoria->name }}"?
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                    data-dismiss="modal">Cancelar</button>
-                                                    <form action="{{ 'categorias/eliminar' }}" method="POST"
-                                                    enctype="multipart/form-data">
-                                                    @csrf
-                                                    <input type="hidden" name="id" class="form-control"
-                                                        id="id" placeholder="Id" value="{{ $categoria->id }}"
-                                                        readonly>
-                                                    <input type="submit" class="btn btn-danger" value="Borrar">
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <form action="{{ 'categorias/eliminar' }}" method="GET" enctype="multipart/form-data">
+                                    @csrf
+                                    <input type="hidden" name="id" class="form-control" id="id"
+                                        placeholder="Id" value="{{ $categoria->id }}" readonly>
+                                    <input type="hidden" name="name" class="form-control" id="name"
+                                        placeholder="Nombre" value="{{ $categoria->name }}" readonly>
+                                    <button type="submit" class="btn btn-danger"><i
+                                            class="fas fa-trash">Eliminar</i></button>
+                                </form>
                             </div>
                         </td>
                     </tr>
@@ -135,11 +118,11 @@
 @stop
 
 @section('css')
-    <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="/css/admin_custom.css">
 @stop
 
 @section('js')
     <script>
-        console.log('Hola!');
+        console.log('Hi!');
     </script>
 @stop
