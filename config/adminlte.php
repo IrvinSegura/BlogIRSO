@@ -344,6 +344,16 @@ return [
             'icon' => 'fas fa-fw fa-tags',
         ],
         [
+            'text' => 'Roles',
+            'url'  => 'admin/roles',
+            'icon' => 'fas fa-fw fa-user-tag',
+        ],
+        [
+            'text' => 'Papelera de Reciclaje',
+            'url'  => 'admin/papelera',
+            'icon' => 'fas fa-fw fa-trash-alt',
+        ],
+        [
             'text' => 'Quejas',
             'url'  => 'admin/quejas',
             'icon' => 'fas fa-fw fa-exclamation-triangle',

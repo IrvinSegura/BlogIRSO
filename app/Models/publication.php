@@ -5,9 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Comment;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class publication extends Model
 {
+    use SoftDeletes;
     protected $table = 'publications';
     use HasFactory;
     protected $fillable = [

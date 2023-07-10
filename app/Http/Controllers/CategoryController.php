@@ -41,7 +41,7 @@ class CategoryController extends Controller
     {
         try {
             $category = Category::find($request->id);
-            $category->name = $request->nameNew; // Se corrige el nombre del campo
+            $category->name = $request->nameNew; 
             $category->save();
 
             Session::flash('success', 'Datos enviados correctamente');

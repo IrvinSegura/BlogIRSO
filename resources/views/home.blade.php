@@ -56,7 +56,6 @@
                                         <label for="categoria" class="form-label">Categoría</label>
                                         <select class="form-select" aria-label="Default select example" id="category_id"
                                             name="category_id" required>
-                                            <option selected>Seleccione una categoría</option>
                                             {{ $category = DB::table('category')->get() }}
                                             @foreach ($category as $item)
                                                 <option value="{{ $item->id }}">{{ $item->name }}</option>

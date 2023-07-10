@@ -41,7 +41,10 @@ Route::middleware([
     Route::get('admin/perfil', [UsersController::class, 'perfilAdmin'])->name('perfil');
     Route::get('admin/perfil', [PublicationController::class, 'publicacionPerfil'])->name('perfil');
 
-
+    Route::get('admin/roles', [RoleController::class, 'view'])->name('roles');
+    Route::post('admin/roles', [RoleController::class, 'nuevoRol'])->name('nuevoRol');
+    Route::get('admin/roles/editarNombre', [RoleController::class, 'editarNombre'])->name('editarNombre');
+    Route::get('admin/roles/eliminar', [RoleController::class, 'eliminarRol'])->name('eliminar');
 
     Route::get('admin/estadisticas', [UsersController::class, 'mostrarEstadisticas'])->name('estadisticas');
 
