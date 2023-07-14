@@ -6,6 +6,7 @@ use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\RecycleBinController;
 use App\Http\Controllers\RoleController;
 
 
@@ -52,4 +53,8 @@ Route::middleware([
     Route::post('admin/categorias', [CategoryController::class, 'sendCategory'])->name('categoria');
     Route::get('admin/categorias/nuevoNombre', [CategoryController::class, 'nuevoNombre'])->name('nuevoNombre');
     Route::get('admin/categorias/eliminar', [CategoryController::class, 'eliminar'])->name('eliminar');
+
+    Route::get('admin/papelera', [RecycleBinController::class, 'view'])->name('papelera');
+    Route::get('admin/restaurar/Categoria', [RecycleBinController::class, 'restaurarCategoria'])->name('restaurarCategoria');
+    Route::get('admin/restaurar/Rol', [RecycleBinController::class, 'restaurarRol'])->name('restaurarRol');
 });

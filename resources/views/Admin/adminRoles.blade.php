@@ -55,7 +55,7 @@
                 @endif
             </div>
             <div class="card">
-                <table class="table table-bordered mt-5">
+                <table class="table table-bordered mt-5" id="categoryTable">
                     <thead class="table-head">
                         <tr>
                             <th>Id</th>
@@ -135,10 +135,12 @@
 
 @section('css')
     <link rel="stylesheet" href="/css/admin_custom.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css">
 @stop
 
 @section('js')
-    <script>
-        console.log('Hi!');
-    </script>
+    <script src={{ asset('js\pagination.js') }}></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap4.min.js"></script>
 @stop

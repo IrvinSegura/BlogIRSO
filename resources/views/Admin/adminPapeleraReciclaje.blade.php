@@ -65,6 +65,63 @@
                     </tbody>
                 </table>
             </div>
+            <div class="card">
+                <table class="table table-bordered mt-5" id="categoryTable">
+                    <thead class="table-head">
+                        <tr>
+                            <th>Id</th>
+                            <th>Nombre</th>
+                            <th>Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body" class="table-body">
+                        @foreach ($category as $categoria)
+                            @if ($categoria->deleted_at == true)
+                                <tr>
+                                    <td>{{ $categoria->id }}</td>
+                                    <td>{{ $categoria->name }}</td>
+                                    <td>
+                                        <form action="{{ 'restaurar/categoria' }}" method="POST" enctype="multipart/form-data">
+                                            @csrf
+                                            <input type="hidden" name="id" value="{{ $categoria->id }}">
+                                            <button type="submit" class="btn btn-success"><i class="fas fa-trash"></i>
+                                                Restaurar
+                                            </button>
+                                        </form>
+                                    </td>
+                            @endif
+                        @endforeach
+                    </tbody>
+                </table>
+            </div> 
+            <div class="card">
+                <table class="table table-bordered mt-5" id="categoryTable">
+                    <thead class="table-head">
+                        <tr>
+                            <th>Id</th>
+                            <th>Nombre</th>
+                            <th>Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body" class="table-body">
+                        @foreach ($role as $rol)
+                            @if ($rol->deleted_at == true)
+                                <tr>
+                                    <td>{{ $rol->id }}</td>
+                                    <td>{{ $rol->name }}</td>
+                                    <td>
+                                        <form action="{{ 'restaurar/rol' }}" method="POST" enctype="multipart/form-data">
+                                            @csrf
+                                            <input type="hidden" name="id" value="{{ $rol->id }}">
+                                            <button type="submit" class="btn btn-success"><i class="fas fa-trash"></i>
+                                                Restaurar
+                                            </button>
+                                        </form>
+                                    </td>
+                            @endif
+                        @endforeach
+                    </tbody>
+                </table>
         </div>
     </div>
 @stop
