@@ -11,13 +11,23 @@ use Illuminate\Support\Facades\Log;
 
 class CategoryController extends Controller
 {
-    //
+    /*
+    *
+    *Funciones para el manejo de categorias
+    *
+    */
 
     public function verCategoria()
     {
         $category = DB::table('category')->get();
         return view('Admin.adminCategorias', compact('category'));
     }
+
+    /*
+    *
+    *Funciones para el manejo de categorias
+    *
+    */
 
     public function index()
     {

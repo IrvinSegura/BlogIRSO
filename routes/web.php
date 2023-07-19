@@ -49,4 +49,7 @@ Route::middleware([
     Route::post('admin/categorias', [CategoryController::class, 'sendCategory'])->name('categoria');
     Route::get('admin/categorias/nuevoNombre', [CategoryController::class, 'nuevoNombre'])->name('nuevoNombre');
     Route::get('admin/categorias/eliminar', [CategoryController::class, 'eliminar'])->name('eliminar');
+
+    // ruta para adminCrearPublicaciones
+    Route::get('admin/crear', [PublicationController::class, 'crearPublicaciones'])->name('publicaciones');
 });

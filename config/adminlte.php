@@ -348,6 +348,13 @@ return [
             'url'  => 'admin/quejas',
             'icon' => 'fas fa-fw fa-exclamation-triangle',
         ],
+        [
+            'text' => 'Crear nuevo post',
+            'url'  => 'admin/crear',
+            'icon' => 'fas fa-fw fa-plus',
+            
+
+        ],
     ],
 
     /*

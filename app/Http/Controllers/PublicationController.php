@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\category;
 use Illuminate\Http\Request;
 use App\Models\Publication;
+use App\Models\tag;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Session;
@@ -75,7 +77,27 @@ class PublicationController extends Controller
 
     public function publicacionPerfil()
     {
-        $publicacionMostar = DB::table('publications')->get();
-        return view('Admin/adminPerfil', compact('publicacionMostar'));
+        $publicacionMostar = DB::table('publication')->get();
+        return view('profile.show', compact('publicacionMostar'));
     }
+
+    //que te diriga a adminCrearPublicaciones
+    public function crearPublicaciones()
+    {
+        $category = DB::table('category')->get();
+        $user = DB::table('users')->get();
+        return view('Admin/adminCrearPublicaciones', compact('category', 'user'));
+    }
+
+    public function create (){
+
+        $category =category::pluck('name','id');
+        $tags = tag::all();
+
+        return view('Admin.adminCrearPublicaciones', compact('category', 'tags'));
+    }
+
+    
+
+
 }
