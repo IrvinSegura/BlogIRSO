@@ -1,6 +1,4 @@
 @extends('adminlte::page')
-<link rel="stylesheet" href="{{ asset('css/home.css') }}">
-
 @section('title', 'Inicio')
 
 @section('content_header')
@@ -17,12 +15,11 @@
     <br><br>
     <!-- Botón para abrir el modal -->
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-        <i class="fas fa-add">Nueva Categoria</i>
+        <i class="fas fa-plus"></i> Nueva Categoria
     </button>
 
     <!-- Modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -34,21 +31,20 @@
                 <div class="modal-body">
                     <form action="{{ 'categorias' }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        <div class="mb-3">
-                            <label for="nombre" class="form-label">Nombre</label>
+                        <div class="form-group">
+                            <label for="nombre">Nombre</label>
                             <input type="text" name="name" class="form-control" id="name" placeholder="Nombre">
                         </div>
-                        <input type="submit" class="btn btn-primary" value="Enviar">
+                        <button type="submit" class="btn btn-primary">Enviar</button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-
                     </form>
                 </div>
             </div>
         </div>
     </div>
     <br><br>
-    <center>
-        <table class="table table-striped" style="max-width: 750px;">
+    <div class="container">
+        <table class="table table-striped" id="categoryTable">
             <thead>
                 <tr>
                     <th>Id</th>
@@ -63,7 +59,7 @@
                         <td>{{ $categoria->name }}</td>
                         <td>
                             <a href="" class="btn btn-primary" data-toggle="modal"
-                                data-target="#myModal{{ $categoria->id }}"><i class="fas fa-edit">Editar</i></a>
+                                data-target="#myModal{{ $categoria->id }}"><i class="fas fa-edit"></i> Editar</a>
 
                             <div class="modal fade" id="myModal{{ $categoria->id }}" tabindex="-1" role="dialog"
                                 aria-labelledby="exampleModalLabel{{ $categoria->id }}" aria-hidden="true">
@@ -77,19 +73,18 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            Nombre Actual:
-                                            <label for="nombre" class="form-label">{{ $categoria->name }}</label>
+                                            <p>Nombre Actual: <strong>{{ $categoria->name }}</strong></p>
                                             <form action="{{ 'categorias/nuevoNombre' }}" method="GET"
                                                 enctype="multipart/form-data">
                                                 @csrf
-                                                <div class="mb-3">
-                                                    <input type="hidden" name="id" class="form-control" id="id"
-                                                        placeholder="Id" value="{{ $categoria->id }}" readonly>
-                                                    <label for="nombre" class="form-label">Nuevo Nombre:</label>
-                                                    <input type="text" name="nameNew" class="form-control" id="nameNew"
+                                                <div class="form-group">
+                                                    <input type="hidden" name="id" class="form-control"
+                                                        value="{{ $categoria->id }}" readonly>
+                                                    <label for="nombre">Nuevo Nombre:</label>
+                                                    <input type="text" name="nameNew" class="form-control"
                                                         placeholder="Nombre">
                                                 </div>
-                                                <input type="submit" class="btn btn-primary" value="Enviar">
+                                                <button type="submit" class="btn btn-primary">Enviar</button>
                                                 <button type="button" class="btn btn-secondary"
                                                     data-dismiss="modal">Cerrar</button>
                                             </form>
@@ -97,32 +92,29 @@
                                     </div>
                                 </div>
                             </div>
-                            <div>
-                                <form action="{{ 'categorias/eliminar' }}" method="GET" enctype="multipart/form-data">
-                                    @csrf
-                                    <input type="hidden" name="id" class="form-control" id="id"
-                                        placeholder="Id" value="{{ $categoria->id }}" readonly>
-                                    <input type="hidden" name="name" class="form-control" id="name"
-                                        placeholder="Nombre" value="{{ $categoria->name }}" readonly>
-                                    <button type="submit" class="btn btn-danger"><i
-                                            class="fas fa-trash">Eliminar</i></button>
-                                </form>
-                            </div>
+                            <form action="{{ 'categorias/eliminar' }}" method="GET" enctype="multipart/form-data"
+                                style="display: inline-block;">
+                                @csrf
+                                <input type="hidden" name="id" value="{{ $categoria->id }}">
+                                <input type="hidden" name="name" value="{{ $categoria->name }}">
+                                <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i> Eliminar</button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
-
-    </center>
+    </div>
 @stop
 
 @section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css">
 @stop
 
 @section('js')
-    <script>
-        console.log('Hi!');
-    </script>
+    <script src={{ asset('js\pagination.js') }}></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap4.min.js"></script>  
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 @stop

@@ -6,6 +6,7 @@ use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\RecycleBinController;
 use App\Http\Controllers\RoleController;
 
 
@@ -41,7 +42,10 @@ Route::middleware([
     Route::get('admin/perfil', [UsersController::class, 'perfilAdmin'])->name('perfil');
     Route::get('admin/perfil', [PublicationController::class, 'publicacionPerfil'])->name('perfil');
 
-
+    Route::get('admin/roles', [RoleController::class, 'view'])->name('roles');
+    Route::post('admin/roles', [RoleController::class, 'nuevoRol'])->name('nuevoRol');
+    Route::get('admin/roles/editarNombre', [RoleController::class, 'editarNombre'])->name('editarNombre');
+    Route::get('admin/roles/eliminar', [RoleController::class, 'eliminarRol'])->name('eliminar');
 
     Route::get('admin/estadisticas', [UsersController::class, 'mostrarEstadisticas'])->name('estadisticas');
 
@@ -50,6 +54,12 @@ Route::middleware([
     Route::get('admin/categorias/nuevoNombre', [CategoryController::class, 'nuevoNombre'])->name('nuevoNombre');
     Route::get('admin/categorias/eliminar', [CategoryController::class, 'eliminar'])->name('eliminar');
 
+<<<<<<< HEAD
     // ruta para adminCrearPublicaciones
     Route::get('admin/crear', [PublicationController::class, 'crearPublicaciones'])->name('publicaciones');
+=======
+    Route::get('admin/papelera', [RecycleBinController::class, 'view'])->name('papelera');
+    Route::get('admin/restaurar/Categoria', [RecycleBinController::class, 'restaurarCategoria'])->name('restaurarCategoria');
+    Route::get('admin/restaurar/Rol', [RecycleBinController::class, 'restaurarRol'])->name('restaurarRol');
+>>>>>>> b1eccc9876013e6f4256b4c692bb0b0fb632951d
 });

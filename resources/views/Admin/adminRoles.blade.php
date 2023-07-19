@@ -1,10 +1,10 @@
-@extends('adminlte::page');
-<link rel="stylesheet" href="{{ asset('css/publication.css') }}">
-@section('title', 'Publicaciones')
+@extends('adminlte::page')
+<link rel="stylesheet" href="{{ asset('css/home.css') }}">
+
+@section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Roles</h1>
-    <a href="{{ route('home') }}" class="btn btn-primary">Volver</a>
+    <h1>Dashboard</h1>
 @stop
 
 @section('content')
@@ -14,6 +14,37 @@
     @if (Session::has('failed'))
         <x-failed-popup />
     @endif
+    <!-- Botón para abrir el modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+        <i class="fas fa-plus">Agregar Rol</i>
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Nuevo Rol</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ 'roles' }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Nombre: </label>
+                            <input type="text" class="form-control" id="nameRol" name="nameRol" required>
+                        </div>
+                        <input type="submit" class="btn btn-primary" value="Enviar">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div><br><br>
+    <br><br>
     <div class="container">
         <div class="row justify-content-center">
             <div class="card-body">
@@ -24,34 +55,76 @@
                 @endif
             </div>
             <div class="card">
-                <table class="table table-bordered mt-5">
+                <table class="table table-bordered mt-5" id="categoryTable">
                     <thead class="table-head">
                         <tr>
-                            <th>id</th>
-                            <th>name</th>
-                            <th>email</th>
-                            <th>rol</th>
-                            <th>creacion</th>
-                            <th>Opciones</th>
+                            <th>Id</th>
+                            <th>Nombre</th>
+                            <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody id="table-body" class="table-body">
-                        @foreach ($users as $user)
-                            <tr>
-                                <td>{{ $user->id }}</td>
-                                <td>{{ $user->name }}</td>
-                                <td>{{ $user->email }}</td>
-                                <td>{{ $user->rol }}</td>
-                                <td>{{ $user->created_at }}</td>
-                                <td>
-                                    <a href="" class="btn btn-primary">Editar</a>
-                                    <form action="" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">Eliminar</button>
-                                    </form>
-                                </td>
-                            </tr>
+                        @foreach ($role as $role)
+                            @if ($role->deleted_at == null)
+                                <tr>
+                                    <td>{{ $role->id }}</td>
+                                    <td>{{ $role->name }}</td>
+                                    <td>
+                                        <a href="" class="btn btn-primary" data-toggle="modal"
+                                            data-target="#myModal{{ $role->id }}"><i class="fas fa-edit">Editar</i></a>
+
+                                        <div class="modal fade" id="myModal{{ $role->id }}" tabindex="-1"
+                                            role="dialog" aria-labelledby="exampleModalLabel{{ $role->id }}"
+                                            aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel{{ $role->id }}">
+                                                            Editar
+                                                            Rol</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Nombre Actual:
+                                                        <label for="nombre" class="form-label">{{ $role->name }}</label>
+                                                        <form action="{{ 'roles/editarNombre' }}" method="GET"
+                                                            enctype="multipart/form-data">
+                                                            @csrf
+                                                            <div class="mb-3">
+                                                                <input type="hidden" name="id" class="form-control"
+                                                                    id="id" placeholder="Id"
+                                                                    value="{{ $role->id }}" readonly>
+                                                                <label for="nombre" class="form-label">Nuevo
+                                                                    Nombre:</label>
+                                                                <input type="text" name="newRoleName" id="newRoleName"
+                                                                    class="form-control">
+                                                            </div>
+                                                            <input type="submit" class="btn btn-primary" value="Enviar">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Cerrar</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <form action="{{ 'roles/eliminar' }}" method="GET"
+                                                enctype="multipart/form-data">
+                                                @csrf
+                                                <input type="hidden" name="id" class="form-control"
+                                                    id="idRoleDelete" value="{{ $role->id }}">
+                                                <input type="hidden" name="name" class="form-control"
+                                                    id="nameRoleDelete" value="{{ $role->name }}">
+                                                <button type="submit" class="btn btn-danger"><i
+                                                        class="fas fa-trash">Eliminar</i></button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endif
                         @endforeach
                     </tbody>
                 </table>
@@ -62,10 +135,12 @@
 
 @section('css')
     <link rel="stylesheet" href="/css/admin_custom.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css">
 @stop
 
 @section('js')
-    <script>
-        console.log('Hi!');
-    </script>
+    <script src={{ asset('js\pagination.js') }}></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap4.min.js"></script>
 @stop
