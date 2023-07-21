@@ -71,7 +71,7 @@ class PublicationController extends Controller
 
     public function mostrarCategoria()
     {
-        $categoria = DB::table('category')->get();
+        $category = DB::table('category')->get();
         return view('/home', compact('category'));
     }
 

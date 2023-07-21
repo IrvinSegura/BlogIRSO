@@ -54,12 +54,15 @@ Route::middleware([
     Route::get('admin/categorias/nuevoNombre', [CategoryController::class, 'nuevoNombre'])->name('nuevoNombre');
     Route::get('admin/categorias/eliminar', [CategoryController::class, 'eliminar'])->name('eliminar');
 
-<<<<<<< HEAD
     // ruta para adminCrearPublicaciones
     Route::get('admin/crear', [PublicationController::class, 'crearPublicaciones'])->name('publicaciones');
-=======
+
     Route::get('admin/papelera', [RecycleBinController::class, 'view'])->name('papelera');
     Route::get('admin/restaurar/Categoria', [RecycleBinController::class, 'restaurarCategoria'])->name('restaurarCategoria');
     Route::get('admin/restaurar/Rol', [RecycleBinController::class, 'restaurarRol'])->name('restaurarRol');
->>>>>>> b1eccc9876013e6f4256b4c692bb0b0fb632951d
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
