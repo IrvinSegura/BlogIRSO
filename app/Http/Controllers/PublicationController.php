@@ -2,102 +2,81 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\category;
-use Illuminate\Http\Request;
+use App\Models\Category;
 use App\Models\Publication;
-use App\Models\tag;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Log;
+use App\Models\User;
 
 class PublicationController extends Controller
 {
-    //
     public function index()
     {
-        $publicationes = Publication::all();
-        $category = DB::table('category')->get();
-        $user = DB::table('users')->get();
+        $publications = Publication::all();
+        $category = Category::all();
         $user_id = auth()->user()->id;
-        return view('Admin/adminPublicaciones', compact('publicationes', 'category', 'user', 'user_id'));
+        $user = User::all();
+        return view('Admin/adminPublicaciones', compact('publications', 'category', 'user_id', 'user'));
     }
 
     public function hola1(Request $request)
     {
-        try{
-            $user_id = auth()->user()->id;
+        try {
+            if (!auth()->check()) {
+                return redirect()->route('home')->with('failed', 'Usuario no autenticado.');
+            }
+
             $slug = str_replace(' ', '-', $request->title);
-            $slug_u = strtolower($slug);    
-    
+            $slug_u = strtolower($slug);
+            $users = User::all();
             $publication = new Publication();
             $publication->title = $request->title;
             $publication->category_id = $request->category_id;
             $publication->content = $request->content;
-            $publication->title = $request->title;
-            $publication->category_id = $request->category_id;
-            $publication->content = $request->content;
-            
-            $originalName = $request->file('src_img')->getClientOriginalName();
-            
-            $request->file('src_img')->storeAs('public', $originalName);
-            
-            $publication->src_img = $originalName;
-            
-            $publication->user_id = $user_id;
+            $publication->user_id = auth()->user()->id;
             $publication->status = 'publicado';
             $publication->slug = $slug_u;
+
+            if ($request->hasFile('src_img')) {
+                $originalName = $request->file('src_img')->getClientOriginalName();
+                $request->file('src_img')->storeAs('public', $originalName);
+                $publication->src_img = $originalName;
+            }
+
             $publication->save();
-            $publication = DB::table('publications')->get();
-            $category = DB::table('category')->get();
-            $user = DB::table('users')->get();
-            
+
             Session::flash('success', 'Datos enviados correctamente');
-            return view('home', compact('publication', 'category', 'user'));
-        }
-        catch(\Exception $ex){
+            return view('home');
+        } catch (\Exception $ex) {
             return redirect()->route('home')->with('failed', $ex->getMessage());
         }
     }
 
     public function generarJson()
     {
-        $publication = Publication::all();
-        $json = json_encode($publication);
+        $publications = Publication::all();
+        $json = $publications->toJson(JSON_PRETTY_PRINT);
         $bytes = file_put_contents('publications.json', $json);
-        $json = json_decode($json);
         echo "Se ha generado el archivo publications.json" . $bytes . " bytes en el directorio: " . getcwd();
     }
 
     public function mostrarCategoria()
     {
-        $category = DB::table('category')->get();
-        return view('/home', compact('category'));
+        $category = Category::all();
+        return view('home', compact('category'));
     }
 
     public function publicacionPerfil()
     {
-        $publicacionMostar = DB::table('publication')->get();
+        $publicacionMostar = Publication::all();
         return view('profile.show', compact('publicacionMostar'));
     }
 
-    //que te diriga a adminCrearPublicaciones
-    public function crearPublicaciones()
+    public function muestra()
     {
-        $category = DB::table('category')->get();
-        $user = DB::table('users')->get();
-        return view('Admin/adminCrearPublicaciones', compact('category', 'user'));
+        $publications = Publication::all();
+        $publications_recent = Publication::orderBy('created_at', 'desc')->take(4)->get();
+        $category = Category::all();
+        return view('Publications.publication', compact('publications', 'publications_recent', 'category'));
     }
-
-    public function create (){
-
-        $category =category::pluck('name','id');
-        $tags = tag::all();
-
-        return view('Admin.adminCrearPublicaciones', compact('category', 'tags'));
-    }
-
-    
-
-
 }

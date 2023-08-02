@@ -20,7 +20,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('category_id');
             $table->string('status');
-            $table->string('content');
+            $table->text('content')->change();
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamp('deleted_at')->nullable();
             $table->timestamps();

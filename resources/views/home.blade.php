@@ -7,6 +7,12 @@
 @stop
 
 @section('content')
+    @if (Session::has('success'))
+        <x-success-popup />
+    @endif
+    @if (Session::has('failed'))
+        <x-failed-popup />
+    @endif
     <div class="container">
         <div class="row justify-content-center">
             <div class="card-body">

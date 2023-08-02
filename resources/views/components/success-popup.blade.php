@@ -6,11 +6,21 @@
 
     <script>
         $(document).ready(function() {
-            swal(
-                '!Exito!',
-                'Accion realizada correctamente',
-                'success'
-            );
+            @if (Session::has('success'))
+                swal(
+                    '¡Éxito!',
+                    '{{ session('success') }}',
+                    'success'
+                );
+            @endif
+
+            @if (Session::has('failed'))
+                swal(
+                    '¡Error!',
+                    '{{ session('failed') }}',
+                    'error'
+                );
+            @endif
         });
     </script>
 </div>

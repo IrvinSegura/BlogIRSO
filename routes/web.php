@@ -60,6 +60,8 @@ Route::middleware([
     Route::get('admin/papelera', [RecycleBinController::class, 'view'])->name('papelera');
     Route::get('admin/restaurar/Categoria', [RecycleBinController::class, 'restaurarCategoria'])->name('restaurarCategoria');
     Route::get('admin/restaurar/Rol', [RecycleBinController::class, 'restaurarRol'])->name('restaurarRol');
+
+    Route::get('publicacion/muestra', [PublicationController::class, 'muestra'])->name('muestra');
 });
 
 Auth::routes();

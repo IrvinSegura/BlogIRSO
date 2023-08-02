@@ -7,10 +7,10 @@
     <script>
         $(document).ready(function() {
             swal(
-                'Error',
-                'No se pudo realizar la operación',
-                'error'
-            );
+                    '¡Error!',
+                    '{{ session('failed') }}',
+                    'error'
+                );
         });
     </script>
 </div>

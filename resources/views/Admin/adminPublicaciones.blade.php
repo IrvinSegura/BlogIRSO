@@ -8,7 +8,7 @@
 @stop
 
 @section('content')
-    @foreach ($publicationes as $publicacion)
+    @foreach ($publications as $publicacion)
         <center>
             <div class="container">
                 <article class="item-pane" style="border: 2px solid green;">

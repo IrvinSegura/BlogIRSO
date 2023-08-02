@@ -41,7 +41,7 @@ class CategoryController extends Controller
             $category = new Category();
             $category->name = $request->name;
             $category->save();
-            Session::flash('success', 'Datos enviados correctamente');
+            Session::flash('success', 'Categoria creada correctamente');
         } catch (\Exception $ex) {
             Session::flash('failed', $ex->getMessage());
         }
@@ -55,7 +55,7 @@ class CategoryController extends Controller
             $category->name = $request->nameNew; 
             $category->save();
 
-            Session::flash('success', 'Datos enviados correctamente');
+            Session::flash('success', 'Categoria renombrada correctamente');
         } catch (\Exception $ex) {
             Session::flash('failed', $ex->getMessage());
         }
@@ -75,7 +75,7 @@ class CategoryController extends Controller
         $category->delete();
         Session::flash('success', 'Datos enviados correctamente');
     } catch (\Exception $ex) {
-        Session::flash('failed', $ex->getMessage());
+        Session::flash('failed', 'No se puede eliminar la categoria porque tiene publicaciones asociadas');
     }
     return redirect()->back();
 }
