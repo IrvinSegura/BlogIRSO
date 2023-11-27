@@ -19,7 +19,7 @@ class publication extends Seeder
             'title' => 'El nuevo iPhone 12',
             'slug' => 'el-nuevo-iphone-12',
             'src_img' => 'https://cdn.pixabay.com/photo/2017/09/25/13/12/apple-2785074_960_720.jpg',
-            'user_id' => 4,
+            'user_id' => 1,
             'category_id' => 1,
             'status' => 'publicado',
             'content' => 'El nuevo iPhone 12 es el mejor teléfono que ha lanzado Apple hasta la fecha.',

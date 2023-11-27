@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         //
-        Schema::create('publication', function (Blueprint $table) {
+        Schema::create('publications', function (Blueprint $table) {
             $table->id();
             $table->string('title');
             $table->string('slug');
@@ -20,7 +20,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('category_id');
             $table->string('status');
-            $table->text('content')->change();
+            $table->string('content');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
@@ -33,6 +33,6 @@ return new class extends Migration
     public function down(): void
     {
         //
-        Schema::dropIfExists('publication');
+        Schema::dropIfExists('publications');
     }
 };

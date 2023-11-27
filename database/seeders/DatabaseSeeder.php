@@ -26,14 +26,14 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
         $this->call(role::class);
+        $this->call(users::class);
         $this->call(category::class);
-        $this->call(comment::class);
         $this->call(complaint::class);
         $this->call(tag::class);
-        $this->call(tag_publicacion::class);
         $this->call(save_publication::class);
         $this->call(publication::class);
+        $this->call(tag_publicacion::class);
         $this->call(reaction::class);
-        $this->call(users::class);
+        $this->call(comment::class);
     }
 }

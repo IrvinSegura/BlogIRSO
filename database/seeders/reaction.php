@@ -16,8 +16,8 @@ class reaction extends Seeder
         //
         date_default_timezone_set('America/Mexico_City');
         DB::table('reaction')->insert([
-            'publication_id' => 2,
-            'user_id' => 4,
+            'publication_id' => 1,
+            'user_id' => 1,
             'type_reaction' => 'like',
             'created_at' => now(),
             'updated_at' => now(),

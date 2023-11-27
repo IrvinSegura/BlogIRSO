@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('tag_id');
             $table->unsignedBigInteger('publication_id');
             $table->foreign('tag_id')->references('id')->on('tag');
-            $table->foreign('publication_id')->references('id')->on('publication');
+            $table->foreign('publication_id')->references('id')->on('publications');
             $table->timestamps();
         });
     }
