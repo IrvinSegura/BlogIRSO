@@ -318,12 +318,6 @@ return [
             'icon' => 'fas fa-fw fa-user',
         ],
         [
-            'text' => 'Estadisticas',
-            'url'  => 'admin/estadisticas',
-            'icon' => 'fas fa-fw fa-chart-line',
-
-        ],
-        [
             'text' => 'Control de Usuarios ',
             'url'  => 'admin/usuarios',
             'icon' => 'fas fa-fw fa-users',
