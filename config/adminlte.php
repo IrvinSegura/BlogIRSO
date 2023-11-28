@@ -353,18 +353,6 @@ return [
             'url'  => 'admin/papelera',
             'icon' => 'fas fa-fw fa-trash-alt',
         ],
-        [
-            'text' => 'Quejas',
-            'url'  => 'admin/quejas',
-            'icon' => 'fas fa-fw fa-exclamation-triangle',
-        ],
-        [
-            'text' => 'Crear nuevo post',
-            'url'  => 'admin/crear',
-            'icon' => 'fas fa-fw fa-plus',
-            
-
-        ],
     ],
 
     /*
