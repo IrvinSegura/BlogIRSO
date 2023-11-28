@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class publication extends Model
 {
     use SoftDeletes;
-    protected $table = 'publication';
+    protected $table = 'publications';
     use HasFactory;
     protected $fillable = [
         'title',
